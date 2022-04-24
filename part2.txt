@@ -1,0 +1,12 @@
+For deploying this application to a public cloud provider i will recomend to use static web solutions such as S3 for AWS or Storage Accounts for Azure Cloud for me this is the best solution 
+in terms of infrastructure for this application. This is because is cheap, easy to deploy and easy manage.
+I would deploy this application in AWS using S3 and Route 53 services. I'm taking this decision because AWS is the most common cloud provider, S3 has good pricing offers and we can easily add 
+a custom domain (which means the application can have our own DNS name dicidr.com and not the S3 name which is not production ready)
+
+For building the infrastructure i'll use terraform for creating the S3 bucket with the required policies and with the required configuration for serving a static web page and also to configure
+all the route 53 dns zone for having our own URL for the web. For terraform I will be using the remote state (store the state in a remote location  "s3") and using the AWS provider to create
+all the resources. Also on this terraform I will be using a naming convention depending on the environment in which the solution is deployed. So for example for development environment the 
+S3 bucket can be called devrdicidr, for test testrdicidr and that way on. this means that for each environment we just need to import the module and give different values to the variable
+
+From  the CI Pipeline we already have the artifacts stored in one s3 bucket, we have missing still to create a CD pipeline that takes the desired artifact and deploys it to the 
+S3 bucket of each environment.
