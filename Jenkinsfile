@@ -2,9 +2,9 @@ pipeline {
     agent { label 'main' }
 
     environment {
-        BUILD_NUM = currentBuild.number
-        WORKSPACE = env.WORKSPACE
-        BRANCH = env.BRANCH_NAME
+        BUILD_NUM = "${currentBuild.number}"
+        WORKSPACE = "${env.WORKSPACE}"
+        BRANCH = "${env.BRANCH_NAME}"
     }
 
     options {
@@ -61,10 +61,12 @@ pipeline {
 
         stage('Publish'){
             steps {
-                if ("${BRANCH}" == "main"){
-                   echo "Publishing artifact to S3"
-                   sh "zip -r rdicidr-${BUILD_NUM}.zip build"
-                   //s3Upload(sourceFile: "${WORKSPACE}/rdicidr-${BUILD_NUM}.zip", bucket: 'fsl-artifacts', path: 'rdicidr/artifacts') 
+                script{
+                    if ("${BRANCH}" == "main"){
+                    echo "Publishing artifact to S3"
+                    sh "zip -r rdicidr-${BUILD_NUM}.zip build"
+                    //s3Upload(sourceFile: "${WORKSPACE}/rdicidr-${BUILD_NUM}.zip", bucket: 'fsl-artifacts', path: 'rdicidr/artifacts') 
+                    }
                 }
             }
         }
