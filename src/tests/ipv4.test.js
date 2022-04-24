@@ -15,13 +15,13 @@ test("first address is calculated correctly", () => {
 test("first address (AWS) is calculated correctly", () => {
   // using 192.168.100.14/20 CIDR
   const ipv4 = new IPv4([192, 168, 100, 14], 20);
-  expect(ipv4.firstUsableAddress(3)).toBe("192.168.96.4");
+  expect(ipv4.firstUsableAddress(3)).toBe("192.168.96.1");
 });
 
 test("last usable address is calculated correctly", () => {
   // using 192.168.100.14/20 CIDR
   const ipv4 = new IPv4([192, 168, 100, 14], 20);
-  expect(ipv4.lastUsableAddress()).toBe("192.168.111.254");
+  expect(ipv4.lastUsableAddress()).toBe("192.168.111.252");
 });
 
 test("broadcast address is calculated correctly", () => {
