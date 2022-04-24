@@ -55,7 +55,6 @@ pipeline {
                   // echo "Publishing artifact to S3"
                    //sh "zip -r rdicidr-${currentBuild.number}.zip build"
                    //s3Upload(sourceFile: "${env.WORKSPACE}/rdicidr-${currentBuild.number}.zip", bucket: 'fsl-artifacts', path: 'rdicidr/artifacts') 
-                }
             }
         }
     }
