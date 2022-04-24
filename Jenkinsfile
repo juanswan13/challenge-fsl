@@ -7,6 +7,10 @@ pipeline {
         BRANCH = env.BRANCH_NAME
     }
 
+    options {
+        skipDefaultCheckout true
+    }
+
     stages{
         stage('Checkout'){
             steps {    
